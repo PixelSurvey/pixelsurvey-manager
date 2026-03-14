@@ -22,7 +22,7 @@ cd core-usage
 2. **Create a Python venv with the rquirements**
 ```bash
 python -m venv .psenv
-.psenv/bin/actiavte
+source .psenv/bin/activate
 pip install -r requirements.txt
 ```
 
