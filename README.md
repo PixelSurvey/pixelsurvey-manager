@@ -28,14 +28,19 @@ git submodule update --init --recursive
 
 ```bash
 # Run from the core-usage folder
-python run.py safe-seoul-pilot-en-v1_3
+cd core-usage
+python -m pixelsurvey_core.survey_gen <survey_id>
+
+# Example:
+python -m pixelsurvey_core.survey_gen safe-seoul-pilot-en-v1_3
 ```
 
-## Notes on Paths
+## How it Works
 
-- `recipes/` in core-usage points to `PROJECT_ROOT/recipes` in `vars.py`
-- `surveys/` is generated in `PROJECT_ROOT/surveys` in `vars.py`
-- All paths are relative and work correctly
+- Recipe files go in `core-usage/recipes/`
+- Generated surveys are created in `core-usage/surveys/`
+- Both paths are configured automatically via `vars.py` in `pixelsurvey-core`
+- The submodule ensures you always have the correct version of the generator
 
 ## Update pixelsurvey-core
 
