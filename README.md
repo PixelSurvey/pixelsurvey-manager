@@ -76,7 +76,7 @@ python -m pixelsurvey-core.survey_gen stated_preference_example
 
 ---
 
-## 🛠️ Generate templates for your experimental activities
+## 🛠️ Generating templates for your experimental activities
 
 After you have created the Survey YAML recipe. You can generate the CSV templates (examples) you need to fill for your experiments (custom or random) based the attributes names you have filled.
 
@@ -108,6 +108,46 @@ python app.py
 ```
 
 Then, open your web browser and navigate to `http://127.0.0.1:8050/` (or the port specified in the terminal) to preview your survey!
+
+
+## 🚀 Production Deployment (Docker + HTTPS)
+
+Once your survey is generated and tested locally, you can prepare it for deployment on a Linux server using Docker and Gunicorn with SSL support.
+
+### 1. Generate Container Files
+Run the container generator by providing the `<survey_name>` and the domain name where it will be hosted:
+
+```bash
+python -m pixelsurvey-core.container_gen <survey_name> survey.example.com
+```
+This will inject a `Dockerfile` and a `docker-compose.yaml` (v3.8) directly into your survey folder.
+
+### 2. Configure HTTPS (Certbot)
+Before starting the container, ensure you have the Let's Encrypt certificates on your host machine. You can use Certbot on your Linux server:
+
+```bash
+sudo apt-get update
+sudo apt-get install certbot
+sudo certbot certonly --standalone -d survey.example.com
+```
+Certbot will save the certificates in `/etc/letsencrypt/live/survey.example.com/`, which is the path automatically mapped by the generated `docker-compose.yaml`.
+
+### 3. Launch the Application
+Upload the survey folder to your server and run:
+
+```bash
+# Build the Docker image
+docker compose build
+
+# Start the service in the background
+docker compose up -d
+```
+
+### 🛠️ Deployment Notes
+- **Static Assets:** The `docker-compose.yaml` includes a commented-out volume for `/wd/assets/images`. If your survey relies on a large local image library, you can uncomment this line to mount a host directory instead of including the images in the Docker build.
+- **Security:** The container uses the `python:3.11-slim-bullseye` base image to keep the environment lightweight and secure.
+- **Port Mapping:** By default, the application maps port 443 (HTTPS) from the host to the container. Ensure your server's firewall allows traffic on this port.
+
 
 ---
 *Built for research with [PixelSurvey](https://github.com/PixelSurvey/pixelsurvey-core).*
