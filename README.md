@@ -52,19 +52,20 @@ To generate a new Dash survey application from a YAML recipe, use the core gener
 
 > [!IMPORTANT]
 > **Recipe Folder Structure:**
-> Inside the `recipes/` directory, you must create a specific folder for each survey using the `recipe-<survey_id>` naming convention. All your YAML configurations (like `survey.yaml`) and assets go inside that folder.
+> Inside the `recipes/` directory, you must create a specific folder for each survey using the `recipe-<survey_name>` naming convention. All your YAML configurations (like `survey.yaml`) and assets go inside that folder.
 > 
 > **Example structure:**
+> If the `<survey_name>` is `stated_preference_example`, the folder structure should be:
 > `recipes/recipe-stated_preference_example/survey.yaml`
 > 
-> When running the generator, you must pass exactly that `<survey_id>` (in this case, `stated_preference_example`).
+> When running the generator, you must pass exactly that `<survey_name>` (in this case, `stated_preference_example`).
 
 ```bash
 # Ensure your virtual environment is active
 source .psenv/bin/activate
 
 # Generate the survey
-python -m pixelsurvey-core.survey_gen <survey_id>
+python -m pixelsurvey-core.survey_gen <survey_name>
 ```
 
 **Example:**
