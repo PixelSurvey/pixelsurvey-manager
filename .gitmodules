@@ -1,6 +1,0 @@
-[submodule "pixelsurvey-core"]
-	path = pixelsurvey_core
-	url = https://github.com/PixelSurvey/pixelsurvey-core.git
-[submodule "pixelsurvey_core"]
-	path = pixelsurvey_core
-	url = https://github.com/PixelSurvey/pixelsurvey-core.git
