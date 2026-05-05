@@ -31,3 +31,4 @@ PIPFILE.lock
 # Generated directories
 surveys/
 .env
+.psenv
