@@ -91,7 +91,7 @@ survey:
         quotas:
           method: uniform
           limit: 3
-          fullquota_content: |
+          fullquota_message: |
             ## Thank you for your interest
             However, you are not eligible for continuing replying this survey
 
